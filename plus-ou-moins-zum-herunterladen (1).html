@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plus ou moins ? – Vergleichen auf Französisch</title>
+<style>
+:root{--bg:#fff8e7;--dot:#f0e3b8;--card:#fff;--ink:#14213d;--mute:#5d6685;--blue:#2447d6;--red:#ff3b4e;--gold:#ffd23f;--ok:#0d8a55;--okbg:#d9f7e8;--no:#c4142b;--nobg:#ffe1e5;--mid:#fff0b8;--bd:#14213d;--sh:#14213d;--soft:#f6efd8}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1430;--dot:#1b2556;--card:#18214a;--ink:#f5f3ea;--mute:#aab3d4;--blue:#7d97ff;--red:#ff6b7a;--ok:#4be0a0;--okbg:#103d2e;--no:#ff8591;--nobg:#4a1f2a;--mid:#4a4015;--bd:#5b6bb5;--sh:#05081a;--soft:#222c5c}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg) radial-gradient(var(--dot) 1.6px,transparent 1.6px) 0 0/24px 24px;color:var(--ink);font:17px/1.55 "Trebuchet MS","Segoe UI",system-ui,sans-serif}
+header{background:linear-gradient(135deg,#2447d6,#5a2fd0 65%,#ff3b4e 140%);color:#fff;padding:16px 20px 0}
+header::after{content:"";display:block;height:10px;margin:0 -20px;background:linear-gradient(90deg,#2447d6 33%,#fff 33% 66%,#ff3b4e 66%)}
+.wrap{max-width:900px;margin:0 auto}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.deco{font-size:1.6rem;letter-spacing:6px}
+.chip{font:inherit;font-weight:700;background:rgba(255,255,255,.2);color:#fff;border:2px solid rgba(255,255,255,.5);border-radius:99px;padding:4px 14px;margin-left:6px;cursor:pointer}
+h1{font:900 clamp(2.3rem,9vw,4rem)/1 "Arial Rounded MT Bold","Trebuchet MS",sans-serif;margin:10px 0 4px;text-shadow:3px 3px 0 var(--red)}
+header p{margin:0 0 16px;font-weight:700}
+nav{display:flex;gap:8px;flex-wrap:wrap;padding-bottom:16px}
+nav button{font:inherit;font-weight:700;border:2px solid #fff;background:rgba(255,255,255,.12);color:#fff;padding:8px 14px;border-radius:99px;cursor:pointer}
+nav button[aria-selected=true]{background:var(--gold);color:#14213d;border-color:#14213d;box-shadow:0 3px 0 #14213d}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+main{padding:26px 20px 60px}
+section{display:none}section.on{display:block}
+h2{font:900 1.7rem "Arial Rounded MT Bold","Trebuchet MS",sans-serif;margin:0 0 12px}
+h3{margin:18px 0 8px;font-size:1.1rem;color:var(--blue)}
+.card,.q,.ticket{background:var(--card);border:2px solid var(--bd);border-radius:16px;padding:16px 18px;margin:14px 0;box-shadow:5px 5px 0 var(--sh)}
+.card:nth-of-type(even){border-left:10px solid var(--red)}.card:nth-of-type(odd){border-left:10px solid var(--blue)}
+.formula{font:700 1.05rem Georgia,serif;background:var(--mid);border:2px dashed var(--bd);padding:10px 14px;margin:8px 0;border-radius:10px}
+.formula em{color:var(--red);font-style:normal;font-size:1.15em}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.95rem}
+th,td{border-bottom:1px solid var(--soft);padding:7px 8px;text-align:left}
+th{color:var(--mute)}
+.btn{font:inherit;font-weight:800;border:2px solid var(--bd);border-radius:12px;padding:10px 18px;background:var(--blue);color:#fff;cursor:pointer;box-shadow:0 4px 0 var(--sh);margin:4px 6px 4px 0}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--sh)}
+@media (prefers-color-scheme:dark){.btn{background:#3b5bd6}}
+.btn.alt{background:var(--card);color:var(--ink)}
+.q p{margin:0 0 10px}
+.gap{font:inherit;width:9ch;padding:3px 6px;border:2px solid var(--bd);border-radius:8px;background:var(--soft);color:var(--ink);text-align:center}
+.gap.ok{border-color:var(--ok);background:var(--okbg)}.gap.no{border-color:var(--no);background:var(--nobg)}
+.hint{color:var(--mute);font-size:.9rem}
+.fb{margin-top:8px;font-size:.95rem;font-weight:700}.fb.ok{color:var(--ok)}.fb.no{color:var(--no)}
+.opts{display:grid;gap:10px}
+.opt{font:inherit;text-align:left;padding:11px 14px;border-radius:12px;border:2px solid var(--bd);background:var(--soft);color:var(--ink);cursor:pointer;box-shadow:0 3px 0 var(--sh)}
+.opt:hover:not(:disabled){transform:translateY(-2px);background:var(--gold);color:#14213d}
+.opt.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.opt.no{border-color:var(--no);background:var(--nobg);color:var(--ink)}
+.score{font-weight:800;font-size:1.2rem;margin:14px 0}
+.route{display:flex;align-items:center;margin:18px 0 8px}
+.stop{flex:1;text-align:center;font-size:.8rem;font-weight:700;color:var(--mute);position:relative}
+.stop i{display:block;width:30px;height:30px;margin:0 auto 4px;border-radius:50%;border:3px solid var(--bd);background:var(--card);position:relative;z-index:1}
+.stop.done i{background:var(--ok);border-color:var(--ok)}.stop.done i::after{content:"✓";color:#fff;position:absolute;inset:0;text-align:center;line-height:24px}
+.stop.cur i{background:var(--gold);transform:scale(1.2)}.stop.cur{color:var(--red)}
+.stop::before{content:"";position:absolute;top:13px;left:-50%;width:100%;height:5px;background:var(--soft)}
+.stop:first-child::before{display:none}.stop.done::before,.stop.cur::before{background:var(--ok)}
+.ticket{border-style:dashed}
+.story{font-family:Georgia,serif;font-size:1.08rem}
+.lives{font-size:1.4rem;letter-spacing:3px}
+.finish{text-align:center;padding:24px}
+.finish b{font:900 2.2rem "Arial Rounded MT Bold",sans-serif;display:block;color:var(--red)}
+.gate{position:fixed;inset:0;background:rgba(10,15,40,.88);z-index:50;display:flex;align-items:center;justify-content:center;padding:20px}
+.gate[hidden]{display:none}
+.txt{font:inherit;width:100%;padding:10px 12px;border:2px solid var(--bd);border-radius:10px;background:var(--soft);color:var(--ink)}
+textarea.txt{font:13px/1.4 monospace;min-height:110px}
+.scroll{overflow-x:auto}
+.rt td.g{background:var(--okbg)}.rt td.m{background:var(--mid)}.rt td.b{background:var(--nobg)}
+.bar{height:10px;border-radius:6px;background:var(--soft);margin:2px 0 10px;overflow:hidden}.bar i{display:block;height:100%;background:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.grid .card{margin:0}.big{font-size:2.2rem;line-height:1}
+.btn.sel{background:var(--gold);color:#14213d}.hide td:nth-child(2){color:transparent;background:var(--soft);cursor:pointer}.hide td:nth-child(2):hover{color:inherit;background:none}
+.cf{position:fixed;top:-40px;font-size:28px;pointer-events:none;animation:fall 2.8s linear forwards;z-index:60}
+@keyframes fall{to{transform:translateY(115vh) rotate(540deg)}}
+@media (prefers-reduced-motion:reduce){.cf{display:none}.opt:hover:not(:disabled){transform:none}}
+footer{text-align:center;color:var(--mute);font-size:.85rem;padding-bottom:30px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="top"><div class="deco" aria-hidden="true">🗼🥐🚄🥖</div><div><button class="chip" id="nameChip" title="Namen ändern">👤</button><span class="chip" style="cursor:default">⭐ <b id="pts">0</b> Punkte</span></div></div>
+<h1>Plus ou moins ?</h1>
+<p>Vergleichen auf Französisch · Découvertes 3 · Unité 1</p>
+<nav role="tablist" id="tabs"></nav>
+</div></header>
+<div id="gate" class="gate" hidden><div class="card"><h2>Bonjour ! 👋</h2><p>Wie heißt du? Dein Name erscheint in deinem Ergebnis für die Lehrkraft.</p><input id="nameIn" class="txt" maxlength="30" placeholder="Vorname Nachname" autocomplete="off"><br><br><button class="btn" id="nameOk">C’est parti !</button></div></div>
+<main><div class="wrap">
+
+<section id="home" class="on">
+<h2>Bienvenue ! 👋</h2>
+<div class="card"><p>In <b>Unité 1</b> (<i>Vive les échanges !</i>) habt ihr gelernt, über Austausch, Gastfamilien und Gefühle zu sprechen. Jetzt lernt ihr, <b>Dinge zu vergleichen</b>: <i>Lena est plus impatiente que Claas.</i> Und ihr sagt, wer oder was <b>der/die/das …ste</b> ist: <i>Max est le plus drôle de la classe.</i></p>
+<p>Hier übst du selbstständig und in deinem Tempo. Fehler gehören dazu: Sie zeigen dir, was du noch üben musst.</p></div>
+<h3>Das erwartet dich</h3>
+<div class="grid">
+<div class="card"><div class="big">📖</div><h3>Spickzettel</h3><p>Alle Regeln auf einen Blick. Starte hier!</p><button class="btn" data-go="spick">Los !</button></div>
+<div class="card"><div class="big">🗂️</div><h3>Vokabeln</h3><p>Die Wörter aus Unité 1 zum Nachschlagen und Testen.</p><button class="btn" data-go="voc">Los !</button></div>
+<div class="card"><div class="big">✏️</div><h3>Lückensätze</h3><p>Setze das passende Wort ein: plus, moins, aussi, meilleur …</p><button class="btn" data-go="gaps">Los !</button></div>
+<div class="card"><div class="big">🎯</div><h3>QCM</h3><p>Wähle die richtige Antwort. Du bekommst sofort eine Erklärung.</p><button class="btn" data-go="qcm">Los !</button></div>
+<div class="card"><div class="big">🚄</div><h3>Mission France</h3><p>Reise von Paris nach Nizza. Du hast 3 Leben. Schaffst du alle Städte?</p><button class="btn" data-go="game">Los !</button></div>
+</div>
+<h3>So funktioniert’s</h3>
+<div class="card"><ol>
+<li>Gib deinen <b>Namen</b> ein (oben rechts kannst du ihn ändern).</li>
+<li>Für richtige Antworten sammelst du ⭐: Lückensatz 10, QCM-Frage 10, Vokabel 5, Stadt in Mission France 20.</li>
+<li>Wenn du fertig bist, gehe zu <b>📮 Mein Ergebnis</b>, kopiere deinen Code und schicke ihn an Frau Schmidt.</li>
+<li>Du darfst alles so oft wiederholen, wie du willst. Es zählt dein letzter Stand.</li>
+</ol><p class="hint">Tipp: Wenn du nicht weiterweißt, schau in den Spickzettel. Bonne chance ! 🍀</p></div>
+</section>
+
+<section id="spick">
+<h2>Spickzettel</h2>
+<div class="card">
+<h3>Le comparatif (Vergleich: …-er als)</h3>
+<div class="formula">Adjektiv: <em>plus / moins / aussi</em> + Adjektiv + <em>que</em></div>
+<p>Lena est <b>plus sportive que</b> Tom. · Lyon est <b>moins grande que</b> Paris. · Max est <b>aussi sympa que</b> Léa.</p>
+<table><tr><th>plus … que</th><th>moins … que</th><th>aussi … que</th></tr><tr><td>mehr / -er als</td><td>weniger als</td><td>genauso … wie</td></tr></table>
+<div class="formula">Adverb: <em>plus / moins / aussi</em> + Adverb + <em>que</em></div>
+<p>Tom court <b>plus vite que</b> Léa.</p>
+</div>
+
+<div class="card">
+<h3>Le superlatif (der/die/das …ste)</h3>
+<div class="formula"><em>le / la / les plus</em> (oder <em>moins</em>) + Adjektiv + <em>de</em></div>
+<p>Max est <b>le plus drôle de</b> la classe. · Léa est <b>la plus rapide du</b> groupe. · Ce sont <b>les plus beaux</b> monuments <b>de</b> Paris.</p>
+<ul>
+<li>Nach dem Superlativ steht <b>de</b> (nicht „dans“): <i>de + le = du</i>, <i>de + les = des</i>, <i>de + la = de la</i>.</li>
+<li>Der Artikel richtet sich nach dem Bezugswort: <i>le plus grand</i> (m.), <i>la plus grande</i> (f.), <i>les plus grands / grandes</i> (Pl.).</li>
+</ul>
+<h3>Stellung mit Nomen</h3>
+<table>
+<tr><th>Adjektiv steht vor dem Nomen</th><th>Adjektiv steht nach dem Nomen</th></tr>
+<tr><td><i>C’est <b>le plus grand</b> pays.</i><br>(grand, petit, beau, joli, bon, long …)</td><td><i>C’est le pays <b>le plus populaire</b>.</i><br>(rapide, sportif, curieux, populaire …)</td></tr>
+</table>
+<p class="hint">Bei Adjektiven nach dem Nomen wird der Artikel wiederholt: <i>le train le plus rapide</i>.</p>
+</div>
+
+<div class="card">
+<h3>Unregelmäßig: bon → meilleur</h3>
+<table>
+<tr><th></th><th>Comparatif</th><th>Superlatif</th></tr>
+<tr><td>bon(ne)</td><td>meilleur(e)(s) que</td><td>le / la / les meilleur(e)(s)</td></tr>
+<tr><td>bien (Adverb)</td><td>mieux que</td><td>le mieux</td></tr>
+</table>
+<p>✗ <s>plus bon</s> → ✓ <b>meilleur</b>. Aber: <i>aussi bon que</i> und <i>moins bon que</i> sind richtig.</p>
+</div>
+
+<div class="card">
+<h3>Angleichung merken</h3>
+<table>
+<tr><th>männlich</th><th>weiblich</th><th>männlich</th><th>weiblich</th></tr>
+<tr><td>sportif</td><td>sportive</td><td>petit</td><td>petite</td></tr>
+<tr><td>curieux</td><td>curieuse</td><td>long</td><td>longue</td></tr>
+<tr><td>beau</td><td>belle</td><td>joli</td><td>jolie</td></tr>
+<tr><td>rapide, populaire, timide, drôle</td><td>unverändert</td><td>sympa</td><td>unveränderlich</td></tr>
+</table>
+</div>
+</section>
+
+<section id="voc"><h2>🗂️ Vokabeln · Unité 1</h2>
+<div id="vocF"></div>
+<p class="hint">Tipp: „Deutsch verdecken“ und selbst testen. Beim Darüberfahren oder Antippen erscheint die Übersetzung.</p>
+<div class="card scroll"><table id="vocT"></table></div>
+<h3>Vokabel-Trainer</h3><div id="vocQ"></div></section>
+
+<section id="gaps">
+<h2>Lückensätze</h2>
+<p class="hint">Ergänze die fehlenden Wörter (Groß-/Kleinschreibung egal). Der Tipp in Klammern hilft dir.</p>
+<div id="gapList"></div>
+<button class="btn" id="gapCheck">Prüfen</button>
+<button class="btn alt" id="gapReset">Neu starten</button>
+<div class="score" id="gapScore" aria-live="polite"></div>
+</section>
+
+<section id="qcm">
+<h2>QCM · Multiple Choice</h2>
+<div id="qcmBox"></div>
+</section>
+
+<section id="game">
+<h2>Mission France</h2>
+<div id="gameBox"></div>
+</section>
+
+<section id="res"><h2>📮 Mein Ergebnis</h2><div id="resBox"></div></section>
+<section id="teach"><h2>🔒 Lehrerbereich</h2><div id="teachBox"></div></section>
+</div></main>
+<footer>Le français avec Mme Schmidt · Comparatif &amp; Superlatif · Classe 8</footer>
+
+<script>
+var $=function(s){return document.querySelector(s)};
+var PIN="1234",TMAIL="";
+function fill(n,v){var a=[];for(var i=0;i<n;i++)a.push(v);return a}
+var S={g:fill(12,"-"),q:fill(10,"-"),v:fill(10,"-"),w:fill(6,0),r:0},NAME="";
+try{NAME=localStorage.getItem("fh_name")||""}catch(e){}
+function cnt(x){return(x.match(/1/g)||[]).length}
+function pts(o){return cnt(o.g)*10+cnt(o.q)*10+cnt(o.v||"")*5+o.r*20}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function upd(){$("#nameChip").textContent="👤 "+(NAME||"Name eingeben");$("#pts").textContent=pts({g:S.g.join(""),q:S.q.join(""),v:S.v.join(""),r:S.r})}
+function boom(){var e=["🥐","🇫🇷","⭐","🎉","🥖","🗼"];for(var i=0;i<28;i++){var c=document.createElement("span");c.className="cf";c.textContent=e[i%6];c.style.left=Math.random()*96+"%";c.style.animationDelay=Math.random()*0.8+"s";document.body.appendChild(c);setTimeout(function(x){x.remove()},3800,c)}}
+function openGate(){$("#gate").hidden=false;$("#nameIn").value=NAME;$("#nameIn").focus()}
+$("#nameChip").onclick=openGate;
+$("#nameOk").onclick=function(){var v=$("#nameIn").value.trim();if(!v){$("#nameIn").focus();return}NAME=v;try{localStorage.setItem("fh_name",v)}catch(e){}$("#gate").hidden=true;upd()};
+$("#nameIn").onkeydown=function(e){if(e.key=="Enter")$("#nameOk").click()};
+function chk(t){var h=0;for(var i=0;i<t.length;i++)h=(h*31+t.charCodeAt(i))%99991;return h.toString(36)}
+function mkCode(){var o={n:NAME||"?",t:Date.now(),g:S.g.join(""),q:S.q.join(""),v:S.v.join(""),w:S.w,r:S.r};var b=btoa(unescape(encodeURIComponent(JSON.stringify(o))));return"FH1-"+b+"-"+chk(b)}
+
+var tabs=[["home","🏠 Start"],["spick","📖 Spickzettel"],["voc","🗂️ Vokabeln"],["gaps","✏️ Lückensätze"],["qcm","🎯 QCM"],["game","🚄 Mission France"],["res","📮 Mein Ergebnis"],["teach","🔒 Lehrer"]];
+tabs.forEach(function(t,i){var b=document.createElement("button");b.textContent=t[1];b.setAttribute("role","tab");b.setAttribute("aria-selected",i==0);b.onclick=function(){show(t[0])};b.dataset.t=t[0];$("#tabs").appendChild(b)});
+document.getElementById("home").classList.add("on");
+function show(id){document.querySelectorAll("section").forEach(function(s){s.classList.toggle("on",s.id==id)});document.querySelectorAll("nav button").forEach(function(b){b.setAttribute("aria-selected",b.dataset.t==id)});window.scrollTo(0,0);if(id=="res")renderRes();if(id=="teach")teachInit()}
+function norm(s){return s.toLowerCase().replace(/’/g,"'").replace(/\s+/g," ").trim()}
+
+/* ---------- Lückensätze ---------- */
+var gaps=[
+["Paris est ___ grande ville de France. (die größte)",["la plus"]],
+["Lyon est ___ grande que Paris. (weniger groß)",["moins"]],
+["Ma sœur est ___ sportive que moi. (genauso)",["aussi"]],
+["Cette pizza est ___ que la pizza d’hier. (besser)",["meilleure"]],
+["La Loire est le ___ long fleuve de France. (der längste)",["plus"]],
+["Tom court ___ vite que Léa. (schneller)",["plus"]],
+["Ce sont ___ beaux monuments de Paris. (die schönsten)",["les plus"]],
+["Max est le plus drôle ___ la classe.",["de"]],
+["La tour Eiffel est le monument le plus visité ___ France.",["de"]],
+["Les croissants sont ___ que les baguettes. (besser, Plural)",["meilleurs"]],
+["Léa est la ___ curieuse du groupe. (die neugierigste)",["plus"]],
+["Le guépard est l’animal le plus rapide ___ monde. (de + le)",["du"]],
+["Lena est ___ impatiente que Claas. (genauso)",["aussi"]],
+["À Paris, la vie est ___ calme qu’à la campagne. (weniger)",["moins"]],
+["Les devoirs sont ___ difficiles que les jeux-vidéo. (schwieriger)",["plus"]],
+["Pour moi, cet échange est ___ expérience de ma vie. (die beste)",["la meilleure"]]
+];
+function buildGaps(){S.g=fill(gaps.length,"-");upd();var h="";gaps.forEach(function(g,i){var p=g[0].split("___");h+='<div class="q"><p>'+(i+1)+'. '+p[0]+'<input class="gap" id="g'+i+'" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Lücke '+(i+1)+'">'+p[1]+'</p><div class="fb" id="f'+i+'"></div></div>'});$("#gapList").innerHTML=h;$("#gapScore").textContent=""}
+$("#gapCheck").onclick=function(){var n=0;gaps.forEach(function(g,i){var inp=$("#g"+i),f=$("#f"+i),v=norm(inp.value),ok=g[1].indexOf(v)>-1;S.g[i]=ok?1:0;if(ok)n++;inp.className="gap "+(ok?"ok":"no");f.className="fb "+(ok?"ok":"no");f.textContent=ok?"✓ Richtig!":(v?"✗ Noch nicht. Tipp: Schau in den Spickzettel.":"Hier fehlt noch etwas.")});$("#gapScore").textContent=n+" von "+gaps.length+" richtig"+(n==gaps.length?" – Bravo ! 🎉":"");upd();if(n==gaps.length)boom()};
+$("#gapReset").onclick=buildGaps;
+buildGaps();
+
+/* ---------- QCM ---------- */
+var qcm=[
+["Paris est ___ grande ville de France.",["plus grande","la plus grande","le plus grand"],1,"Ville ist weiblich, also la plus grande."],
+["Ce gâteau est ___ que l’autre.",["plus bon","meilleur","meilleure"],1,"gâteau ist männlich: meilleur. „plus bon“ gibt es nicht."],
+["Lena est ___ Tom.",["aussi sportive que","aussi sportive de","aussi sportif que"],0,"Lena ist weiblich: sportive. Vergleich mit que."],
+["La Loire est le fleuve ___ long de France.",["le plus","plus","la plus"],0,"Fleuve ist männlich: le plus long."],
+["Max est le plus drôle ___ la classe.",["que","de","dans"],1,"Nach dem Superlativ steht de."],
+["C’est le monument le plus visité ___ France.",["de la","du","de"],2,"France steht ohne Artikel: de France."],
+["Quelle phrase est correcte ?",["Léa est plus rapide que Tom.","Léa est plus rapide de Tom.","Léa est la plus rapide que Tom."],0,"Comparatif: plus … que."],
+["Ce sont ___ filles de la classe. (die nettesten)",["les plus sympas","les plus sympa","le plus sympas"],0,"Mehrzahl: les plus. sympa bekommt hier ein -s im Plural (sympas)."],
+["Pour moi, le chocolat est ___ dessert.",["le plus bon","le meilleur","la meilleure"],1,"bon wird zu le meilleur."],
+["Quelle est la forme féminine de « curieux » ?",["curieuxe","curieuse","curieuve"],1,"curieux → curieuse."],
+["Claas est ___ Tom. (genauso schüchtern)",["aussi timide que","aussi timide de","aussi timides que"],0,"timide ist in beiden Formen gleich, Vergleich mit que."],
+["Les filles sont ___ les garçons. (enttäuschter)",["plus déçu que","plus déçues que","plus déçue que"],1,"Plural weiblich: déçues."],
+["Un séjour de 4 semaines est ___ un séjour de 6 mois. (kürzer)",["plus court qu’","plus long qu’","aussi long qu’"],0,"plus court qu’un séjour (que + Vokal = qu’)."]
+];
+var qi=0,qs=0;
+function qcmShow(){var b=$("#qcmBox");if(qi>=qcm.length){if(qs>=8)boom();b.innerHTML='<div class="finish"><b>'+qs+' / '+qcm.length+'</b>'+(qs>=8?"Très bien !":"Weiter üben mit dem Spickzettel.")+'<br><br><button class="btn" id="qr">Nochmal</button></div>';$("#qr").onclick=function(){qi=0;qs=0;S.q=fill(qcm.length,"-");upd();qcmShow()};return}
+var q=qcm[qi];b.innerHTML='<div class="q"><p class="hint">Frage '+(qi+1)+' von '+qcm.length+'</p><p><b>'+q[0]+'</b></p><div class="opts" id="qo"></div><div class="fb" id="qf"></div></div>';
+q[1].forEach(function(o,i){var x=document.createElement("button");x.className="opt";x.textContent=o;x.onclick=function(){S.q[qi]=(i==q[2])?1:0;upd();var all=document.querySelectorAll("#qo .opt");all.forEach(function(a,j){a.disabled=true;if(j==q[2])a.classList.add("ok")});var f=$("#qf");if(i==q[2]){qs++;f.className="fb ok";f.textContent="✓ "+q[3]}else{x.classList.add("no");f.className="fb no";f.textContent="✗ "+q[3]}
+var nx=document.createElement("button");nx.className="btn";nx.style.marginTop="12px";nx.textContent="Weiter";nx.onclick=function(){qi++;qcmShow()};f.parentNode.appendChild(nx);nx.focus()};$("#qo").appendChild(x)})}
+S.q=fill(qcm.length,"-");qcmShow();
+
+/* ---------- Mission France ---------- */
+var M=[
+["Paris","Du landest am Gare de l’Est. Ein Kontrolleur fragt: „Quel est le plus grand monument de Paris ?“ Du sagst: „La tour Eiffel est ___ monument de Paris.“",["le plus grand","la plus grande","plus grand"],0,"monument ist männlich: le plus grand."],
+["Lyon","Im Zug nach Lyon streitet ihr über Essen. Deine Freundin sagt: „Pour moi, la cuisine lyonnaise est ___ de France.“",["la plus bonne","la meilleure","la meilleur"],1,"bon → la meilleure (cuisine ist weiblich)."],
+["Marseille","Am Hafen fragt dich ein Fischer: „Qui est plus rapide, ton frère ou toi ?“ Du antwortest: „Mon frère est plus rapide ___ moi.“",["que","de","dans"],0,"Comparatif: plus … que."],
+["Bordeaux","Im Weinmuseum steht ein Schild: „La Gironde est le ___ grand département de France.“ (weniger bekannt als Paris, aber riesig)",["plus","la plus","les plus"],0,"le plus grand: département ist männlich."],
+["Strasbourg","Du sprichst mit einem Mädchen: „Léa, tu es ___ curieuse ___ la classe !“ (die neugierigste von)",["la plus / de","plus / que","le plus / du"],0,"Weiblich: la plus curieuse, danach de."],
+["Nice","Letzte Etappe! Am Strand sagt der Bademeister: „Les plages de Nice sont ___ plages de la Côte d’Azur.“ (die schönsten)",["les plus belles","la plus belle","les plus beaux"],0,"plage ist weiblich, Plural: les plus belles."]
+];
+var mi=0,lives=3,gs=0;
+function gameStart(){mi=0;lives=3;gs=0;S.w=fill(M.length,0);S.r=0;upd();gameShow()}
+function route(){var h='<div class="route">';M.forEach(function(m,i){h+='<div class="stop '+(i<mi?"done":i==mi?"cur":"")+'"><i></i>'+m[0]+'</div>'});return h+'</div>'}
+function gameShow(){var b=$("#gameBox");
+if(lives<=0){b.innerHTML=route()+'<div class="finish"><b>Mission échouée</b>Du hast keine Leben mehr. Schau in den Spickzettel und versuch es nochmal.<br><br><button class="btn" id="gr">Neue Mission</button></div>';$("#gr").onclick=gameStart;return}
+if(mi>=M.length){boom();b.innerHTML=route()+'<div class="finish"><b>Mission accomplie ! 🇫🇷</b>Du hast alle '+M.length+' Städte erreicht und noch '+lives+' Leben übrig.<br><br><button class="btn" id="gr">Nochmal spielen</button></div>';$("#gr").onclick=gameStart;return}
+var m=M[mi];b.innerHTML=route()+'<div class="lives" aria-label="Leben">'+"❤️".repeat(lives)+"🤍".repeat(3-lives)+'</div><div class="ticket"><p class="story">'+m[1]+'</p><div class="opts" id="go"></div><div class="fb" id="gf"></div></div>';
+m[2].forEach(function(o,i){var x=document.createElement("button");x.className="opt";x.textContent=o;x.onclick=function(){var f=$("#gf");if(i==m[3]){document.querySelectorAll("#go .opt").forEach(function(a){a.disabled=true});x.classList.add("ok");f.className="fb ok";f.textContent="✓ "+m[4];var nx=document.createElement("button");nx.className="btn";nx.style.marginTop="12px";nx.textContent=mi==M.length-1?"Ziel erreichen":"Weiter nach "+M[mi+1][0];nx.onclick=function(){mi++;S.r=mi;upd();gameShow()};f.parentNode.appendChild(nx);nx.focus()}else{x.disabled=true;x.classList.add("no");lives--;S.w[mi]++;upd();f.className="fb no";f.textContent="✗ Falsch, ein Leben weniger. Versuch es nochmal!";if(lives<=0){setTimeout(gameShow,900)}else{$(".lives").textContent="❤️".repeat(lives)+"🤍".repeat(3-lives)}}};$("#go").appendChild(x)})}
+gameStart();
+
+/* ---------- Ergebnis (Schüler) ---------- */
+function renderRes(){var g=cnt(S.g.join("")),q=cnt(S.q.join("")),code=mkCode();
+$("#resBox").innerHTML='<div class="card"><p><b>'+esc(NAME||"(kein Name)")+'</b> · '+$("#pts").textContent+' Punkte</p><p>✏️ Lückensätze: <b>'+g+' / '+gaps.length+'</b><br>🎯 QCM: <b>'+q+' / '+qcm.length+'</b><br>🗂️ Vokabeln: <b>'+cnt(S.v.join(""))+' / 10</b><br>🚄 Mission France: <b>'+(S.r>=M.length?"abgeschlossen ✓":"Etappe "+(S.r+1)+" von "+M.length)+'</b></p></div><div class="card"><p><b>So gibst du dein Ergebnis ab:</b> Kopiere den Code und schicke ihn deiner Lehrkraft (Nachricht, E-Mail oder Zettel).</p><textarea class="txt" id="codeBox" readonly>'+code+'</textarea><button class="btn" id="cp">📋 Code kopieren</button>'+(TMAIL?'<a class="btn" style="text-decoration:none;display:inline-block" href="mailto:'+TMAIL+'?subject=Ergebnis%20Fran%C3%A7ais%20Hub&body='+encodeURIComponent(code)+'">✉️ Per E-Mail senden</a>':'')+'<span class="fb ok" id="cpOk"></span></div>';
+if(!NAME)openGate();
+$("#cp").onclick=function(){var t=$("#codeBox");t.select();var done=function(){$("#cpOk").textContent=" ✓ Kopiert!"};if(navigator.clipboard){navigator.clipboard.writeText(t.value).then(done,function(){document.execCommand("copy");done()})}else{document.execCommand("copy");done()}}}
+
+/* ---------- Lehrerbereich ---------- */
+function ld(){try{return JSON.parse(localStorage.getItem("fh_res")||"[]")}catch(e){return[]}}
+function sv(a){try{localStorage.setItem("fh_res",JSON.stringify(a))}catch(e){}}
+function teachInit(){var b=$("#teachBox");if(b.dataset.open){tRender();return}
+b.innerHTML='<div class="card"><p>PIN eingeben:</p><input class="txt" id="pin" type="password" style="max-width:200px" inputmode="numeric"> <button class="btn" id="pinOk">Öffnen</button><div class="fb no" id="pinErr"></div></div>';
+$("#pinOk").onclick=function(){if($("#pin").value==PIN){b.dataset.open=1;teachUI()}else $("#pinErr").textContent="Falsche PIN."};
+$("#pin").onkeydown=function(e){if(e.key=="Enter")$("#pinOk").click()}}
+function teachUI(){$("#teachBox").innerHTML='<div class="card"><p>Füge die Codes der Schüler:innen ein (einer pro Zeile oder alle zusammen). Neuere Ergebnisse überschreiben ältere desselben Namens. Die Liste bleibt in diesem Browser gespeichert.</p><textarea class="txt" id="tIn" placeholder="FH1-…"></textarea><button class="btn" id="tGo">➕ Auswerten</button><button class="btn alt" id="tCsv">⬇️ CSV (Excel)</button><button class="btn alt" id="tClr">🗑️ Liste leeren</button><div class="fb" id="tMsg"></div></div><div id="tOut"></div>';
+$("#tGo").onclick=function(){var m=$("#tIn").value.match(/FH1-[A-Za-z0-9+\/=]+-[a-z0-9]+/g)||[],R=ld(),bad=0,ok=0;
+m.forEach(function(c){var p=c.split("-");try{if(chk(p[1])!=p[2])throw 0;var o=JSON.parse(decodeURIComponent(escape(atob(p[1]))));var k=String(o.n).toLowerCase(),f=-1;R.forEach(function(x,i){if(String(x.n).toLowerCase()==k)f=i});if(f<0)R.push(o);else if(o.t>=R[f].t)R[f]=o;ok++}catch(e){bad++}});
+sv(R);$("#tIn").value="";$("#tMsg").className="fb "+(bad?"no":"ok");$("#tMsg").textContent=ok+" Code(s) gelesen"+(bad?", "+bad+" ungültig (unvollständig kopiert?)":"")+".";tRender()};
+$("#tClr").onclick=function(){if(confirm("Alle gespeicherten Ergebnisse löschen?")){sv([]);tRender()}};
+$("#tCsv").onclick=function(){var R=ld(),L=["Name;Lücken;QCM;Vokabeln;Mission-Etappe;Fehler Mission;Punkte;Zeit"];R.forEach(function(o){L.push([o.n,cnt(o.g)+"/"+gaps.length,cnt(o.q)+"/"+qcm.length,(o.v?cnt(o.v):"")+"/10",o.r>=M.length?"fertig":o.r+1,o.w.reduce(function(a,b){return a+b},0),pts(o),new Date(o.t).toLocaleString("de-DE")].join(";"))});
+var a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+L.join("\n")],{type:"text/csv"}));a.download="ergebnisse.csv";a.click()};
+tRender()}
+function cell(x,n){var a=x.replace(/-/g,"").length;if(!a)return'<td>–</td>';var c=cnt(x),r=c/a;return'<td class="'+(r>=.75?"g":r>=.5?"m":"b")+'">'+c+' / '+n+'</td>'}
+function topErr(key,arr,R){return arr.map(function(q,i){var n=0,w=0;R.forEach(function(o){var c=o[key].charAt(i);if(c=="1")n++;else if(c=="0"){n++;w++}});return{t:q,n:n,w:w}}).filter(function(x){return x.w>0}).sort(function(a,b){return b.w/b.n-a.w/a.n||b.w-a.w}).slice(0,4)}
+function lst(title,rows){if(!rows.length)return"";return'<h3>'+title+'</h3>'+rows.map(function(x){return'<div>'+esc(x.t)+' <span class="hint">– '+x.w+' von '+x.n+' falsch</span></div><div class="bar"><i style="width:'+Math.round(x.w/x.n*100)+'%"></i></div>'}).join("")}
+function tRender(){var R=ld().sort(function(a,b){return String(a.n).localeCompare(String(b.n))}),o=$("#tOut");
+if(!R.length){o.innerHTML='<p class="hint">Noch keine Ergebnisse gespeichert.</p>';return}
+var h='<div class="card"><div class="scroll"><table class="rt"><tr><th>Name</th><th>Lücken</th><th>QCM</th><th>Voc.</th><th>Mission</th><th>Pkt.</th><th>Stand</th></tr>';
+R.forEach(function(x){var er=x.w.reduce(function(a,b){return a+b},0);h+='<tr><td>'+esc(x.n)+'</td>'+cell(x.g,gaps.length)+cell(x.q,qcm.length)+(x.v?cell(x.v,10):'<td>–</td>')+'<td>'+(x.r>=M.length?"✓ Nice":x.r||er?"Etappe "+(x.r+1)+"/"+M.length:"–")+' <span class="hint">('+er+' Fehler)</span></td><td><b>'+pts(x)+'</b></td><td class="hint">'+new Date(x.t).toLocaleString("de-DE",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})+'</td></tr>'});
+h+='</table></div><p class="hint">'+R.length+' Schüler:innen · Grün ab 75 %, gelb ab 50 %, rot darunter.</p></div>';
+var mw=M.map(function(m,i){return{t:m[0],w:R.reduce(function(a,x){return a+(x.w[i]||0)},0),n:R.length}}).filter(function(x){return x.w>0});
+h+='<div class="card"><b>Häufigste Fehler der Klasse</b>'+lst("✏️ Lückensätze",topErr("g",gaps.map(function(g){return g[0].replace("___","…")}),R))+lst("🎯 QCM",topErr("q",qcm.map(function(q){return q[0]}),R))+(mw.length?'<h3>🚄 Mission: Fehlversuche pro Stadt</h3>'+mw.map(function(x){return'<div>'+x.t+' <span class="hint">– '+x.w+' Fehlversuch(e)</span></div>'}).join(""):"")+'</div>';
+o.innerHTML=h}
+
+/* ---------- Vokabeln Unité 1 ---------- */
+var V=[
+["un échange","ein Austausch","A"],["un échange scolaire","ein Schüleraustausch","A"],["échanger qc","etw. austauschen","A"],["franco-allemand","deutsch-französisch","A"],
+["un,e correspondant,e","ein Brieffreund, Austauschpartner","A"],["une famille d’accueil","eine Gastfamilie","A"],["un accueil","ein Empfang","A"],["un séjour","ein Aufenthalt","A"],
+["un mois","ein Monat","A"],["une langue","eine Sprache","A"],["un lycée","ein Gymnasium","A"],["une expérience","eine Erfahrung","A"],["le progrès","der Fortschritt","A"],["l’Allemagne","Deutschland","A"],
+["découvrir qc","etw. entdecken","V"],["connaître qc","etw. kennen","V"],["apprendre qc","etw. lernen","V"],["voyager","reisen","V"],["sortir","rausgehen","V"],
+["aller chercher qn","jdn abholen","V"],["demander qc à qn","jdn etw. fragen","V"],["supporter","ertragen","V"],["avoir envie de","Lust haben zu","V"],["participer à qc","an etw. teilnehmen","V"],
+["aider à","helfen zu","V"],["faire la connaissance de","kennenlernen","V"],["avoir le mal du pays","Heimweh haben","V"],["au début","am Anfang","V"],["pendant","während","V"],
+["timide","schüchtern","G"],["content,e","zufrieden","G"],["indépendant,e","unabhängig","G"],["fatigué,e","müde","G"],["gêné,e","verlegen","G"],["impatient,e","ungeduldig","G"],
+["déçu,e","enttäuscht","G"],["ouvert,e","offen","G"],["excité,e","aufgeregt","G"],["difficile","schwer","G"],["libre","frei","G"],["embêté,e","verärgert","G"],["perdu,e","verloren","G"],
+["pareil","gleich","G"],["disponible","verfügbar","G"],["gentil,le","nett","G"],["courageux,se","mutig","G"],["dangereux,se","gefährlich","G"],["triste","traurig","G"],
+["meilleur,e","besser","C"],["mieux","besser (Adverb)","C"],["pire","schlechter, schlimmer","C"],["mauvais,e","schlecht","C"],["bon,ne","gut","C"]];
+var VG={A:"Austausch",V:"Verben &amp; Ausdrücke",G:"Gefühle &amp; Adjektive",C:"Vergleich"};
+var vf="",vh=false;
+function vocTable(){var f=$("#vocF");f.innerHTML="";[["","Alle"],["A","Austausch"],["V","Verben"],["G","Adjektive"],["C","Vergleich"]].forEach(function(g){var b=document.createElement("button");b.className="btn alt"+(vf==g[0]?" sel":"");b.textContent=g[1];b.onclick=function(){vf=g[0];vocTable()};f.appendChild(b)});
+var h=document.createElement("button");h.className="btn alt"+(vh?" sel":"");h.textContent="🙈 Deutsch verdecken";h.onclick=function(){vh=!vh;vocTable()};f.appendChild(h);
+$("#vocT").className=vh?"hide":"";$("#vocT").innerHTML="<tr><th>Français</th><th>Deutsch</th></tr>"+V.filter(function(v){return!vf||v[2]==vf}).map(function(v){return"<tr><td><b>"+v[0]+"</b></td><td>"+v[1]+"</td></tr>"}).join("")}
+function shuf(a){return a.slice().sort(function(){return Math.random()-.5})}
+var vq=[],vi=0,vs=0;
+function vocRound(){vq=shuf(V).slice(0,10);vi=0;vs=0;S.v=fill(10,"-");upd();vocNext()}
+function vocNext(){var b=$("#vocQ");if(vi>=10){if(vs>=8)boom();b.innerHTML='<div class="finish"><b>'+vs+' / 10</b>'+(vs>=8?"Très bien !":"Schau dir die Liste oben nochmal an.")+'<br><br><button class="btn" id="vr">Neue Runde</button></div>';$("#vr").onclick=vocRound;return}
+var w=vq[vi],o=shuf(V.filter(function(x){return x[1]!=w[1]})).slice(0,3).map(function(x){return x[1]});o.push(w[1]);o=shuf(o);
+b.innerHTML='<div class="q"><p class="hint">Wort '+(vi+1)+' von 10</p><p>Was heißt <b>'+w[0]+'</b> ?</p><div class="opts" id="vo"></div><div class="fb" id="vf"></div></div>';
+o.forEach(function(t){var x=document.createElement("button");x.className="opt";x.textContent=t;x.onclick=function(){var ok=t==w[1];S.v[vi]=ok?1:0;if(ok)vs++;upd();document.querySelectorAll("#vo .opt").forEach(function(a){a.disabled=true;if(a.textContent==w[1])a.classList.add("ok")});if(!ok)x.classList.add("no");var f=$("#vf");f.className="fb "+(ok?"ok":"no");f.textContent=ok?"✓ Richtig !":"✗ "+w[0]+" = "+w[1];var nx=document.createElement("button");nx.className="btn";nx.style.marginTop="12px";nx.textContent="Weiter";nx.onclick=function(){vi++;vocNext()};f.parentNode.appendChild(nx);nx.focus()};$("#vo").appendChild(x)})}
+vocTable();vocRound();
+document.querySelectorAll("[data-go]").forEach(function(b){b.onclick=function(){show(b.dataset.go)}});
+upd();if(!NAME)openGate();
+</script>
+</body>
+</html>
